@@ -39,7 +39,7 @@ public class UserService {
     @PreAuthorize("#accountDTO.username == authentication.name")
     public AppUser updateUser(AccountDTO accountDTO){
         AppUser user = new AppUser(accountDTO);
-        return appUserRepo.save(user);
+        return addUser(user);
     }
 
     @PreAuthorize("#user.username == authentication.name")
