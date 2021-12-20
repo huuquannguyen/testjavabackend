@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `heroku_dc7874158b337e2`.`appuser` (
     );
 
 CREATE TABLE IF NOT EXISTS `heroku_dc7874158b337e2`.`role`(
-    `id` INT NOT NULL AUTO_INCREMENT,
+    `id` INT NOT NULL,
     `name` VARCHAR(20) NOT NULL UNIQUE,
     PRIMARY KEY(`id`)
 );
