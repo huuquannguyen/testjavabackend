@@ -39,7 +39,7 @@ public class FileSerivce {
             throw new StorageException("File is empty");
         }
         String fileName = "user_" + userService.findUser().getId() + "." + file.getContentType().substring("image/".length());
-        Path filePath = Paths.get(imageStoragePath + "\\" + fileName);
+        Path filePath = Paths.get(imageStoragePath + "//" + fileName);
         try {
             var is =file.getInputStream();
             Files.copy(is, filePath, StandardCopyOption.REPLACE_EXISTING);
