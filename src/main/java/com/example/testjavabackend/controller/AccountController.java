@@ -33,7 +33,7 @@ public class AccountController {
         Set<Role> userRole = new HashSet<>();
         userRole.add(new Role(1L, "role_user"));
         appUser.setRoles(userRole);
-        appUser.setEmoji(path + "//defaultEmoji.png");
+        appUser.setEmoji(path + "/defaultEmoji.png");
         AppUser user = userService.addUser(appUser);
         return user;
     }
