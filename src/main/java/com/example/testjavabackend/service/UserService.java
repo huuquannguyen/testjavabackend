@@ -38,8 +38,11 @@ public class UserService {
 
     @PreAuthorize("#accountDTO.username == authentication.name")
     public AppUser updateUser(AccountDTO accountDTO){
-        AppUser user = new AppUser(accountDTO);
-        return addUser(user);
+        AppUser oldUser = findUser();
+        AppUser newUser = new AppUser(accountDTO);
+        newUser.setEmoji(oldUser.getEmoji());
+        newUser.setRoles(oldUser.getRoles());
+        return addUser(newUser);
     }
 
     @PreAuthorize("#user.username == authentication.name")
