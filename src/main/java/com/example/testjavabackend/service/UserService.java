@@ -1,5 +1,6 @@
 package com.example.testjavabackend.service;
 
+import com.example.testjavabackend.dto.AccountDTO;
 import com.example.testjavabackend.model.AppUser;
 import com.example.testjavabackend.repo.AppUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,16 @@ public class UserService {
         return appUserRepo.findUser();
     }
 
-    @PreAuthorize("#user.username == authentication.name")
-    public AppUser updateUser(AppUser user){
+    @PreAuthorize("#accountDTO.username == authentication.name")
+    public AppUser updateUser(AccountDTO accountDTO){
+        AppUser user = new AppUser(accountDTO);
         return appUserRepo.save(user);
+    }
+
+    @PreAuthorize("#user.username == authentication.name")
+    public String uploadEmoji(AppUser user){
+        AppUser appUser = appUserRepo.save(user);
+        return appUser.getEmoji();
     }
 
     public void deleteUser(String id){

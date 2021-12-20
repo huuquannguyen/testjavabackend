@@ -1,5 +1,6 @@
 package com.example.testjavabackend.controller;
 
+import com.example.testjavabackend.dto.AccountDTO;
 import com.example.testjavabackend.model.AppUser;
 import com.example.testjavabackend.service.FileSerivce;
 import com.example.testjavabackend.service.UserService;
@@ -30,8 +31,8 @@ public class UserController {
     }
 
     @PutMapping("/user/update")
-    public AppUser updateUser(@RequestBody AppUser appUser){
-        return userService.updateUser(appUser);
+    public AppUser updateUser(@RequestBody AccountDTO accountDTO){
+        return userService.updateUser(accountDTO);
     }
 
     @DeleteMapping("/users/delete/{id}")
@@ -40,11 +41,11 @@ public class UserController {
     }
 
     @PostMapping("/user/uploadEmoji")
-    public AppUser uploadEmoji(@RequestParam MultipartFile emoji){
+    public String uploadEmoji(@RequestParam MultipartFile emoji){
         String emojiPath = fileSerivce.storeFile(emoji);
         AppUser user = userService.findUser();
         user.setEmoji(emojiPath);
-        AppUser userUploaded = userService.updateUser(user);
-        return userUploaded;
+        String pathAfterUpload = userService.uploadEmoji(user);
+        return pathAfterUpload;
     }
 }
